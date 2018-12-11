@@ -9,20 +9,10 @@ export class FetchUtils extends React.Component {
       method: 'POST',
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: this.bodyFromObject(params)
+      body: JSON.stringify(params)
     });
 
     return promisedResponse.then(response => response.json());
-  }
-
-  static bodyFromObject (params:object) {
-    let paramsString = "";
-    Object.keys(params).forEach(key => {
-      paramsString+= "&"+ key + "=" + params[key];
-    });
-
-    return paramsString;
   }
 }
