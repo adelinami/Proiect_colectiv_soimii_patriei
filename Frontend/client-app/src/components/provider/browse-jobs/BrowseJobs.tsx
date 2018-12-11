@@ -18,8 +18,6 @@ export class BrowseJobs extends React.Component<Props> {
   }
 
   getJobs() {
-
-
     return [
       new Job("1", "cleaning", "clean my house", "bob321", "dinner", "20-09-2018"),
       new Job("2", "dog walk", "walk good boie", "angry_cat98", "5", "23-09-2018"),

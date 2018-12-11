@@ -11,6 +11,7 @@ import Typography from "@material-ui/core/Typography/Typography";
 import {HistoryTable} from "../provider/history/HistoryTable";
 import "./home-provider.css";
 import {Cookies, withCookies} from "react-cookie";
+import {FetchUtils} from "../../utils/FetchUtils";
 
 interface Props {
   viewStore: ViewStore;
@@ -29,21 +30,11 @@ class HomeProviderBase extends React.Component<Props> {
   }
 
   getRecommendedJobs() {
-
-    const jsonCfg = require('src/app_properties.json');
-    const requestUrl = jsonCfg.baseUrl + "/recommended/";
     const token = this.getToken();
+    const promisedResponse = FetchUtils.submitPostRequest("/recommended", {'token':token, 'limit':5});
 
-    const promisedResponse = fetch(requestUrl, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: "token=" + token + "&limit=5"
-    });
 
-    promisedResponse.then(response => response.json()).then(json =>{
+    promisedResponse.then(json =>{
       console.log(json);
     }).catch(error=> {
       console.log(error);
@@ -57,21 +48,10 @@ class HomeProviderBase extends React.Component<Props> {
   }
 
   getHistory() {
-    const jsonCfg = require('src/app_properties.json');
-    const requestUrl = jsonCfg.baseUrl + "/history/";
     const token = this.getToken();
+    const promisedResponse = FetchUtils.submitPostRequest("/history", {'token':token});
 
-    const promisedResponse = fetch(requestUrl, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: "token=" + token
-    });
-
-
-    promisedResponse.then(response => response.json()).then(json =>{
+    promisedResponse.then(json =>{
       console.log(json);
     }).catch(error=> {
       console.log(error);
