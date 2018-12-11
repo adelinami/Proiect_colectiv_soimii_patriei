@@ -4,17 +4,39 @@ import { ViewStore } from "src/store/view-store";
 import {RecommendedJobsTable} from "../recommended-jobs/RecommendedJobsTable";
 import {Job} from "../../../view-models/Job";
 import {theme} from "../../../themes/main-theme";
-import {MuiThemeProvider} from "@material-ui/core";
+import {createStyles, MuiThemeProvider, StyledComponentProps, Theme} from "@material-ui/core";
+import Paper from "@material-ui/core/Paper/Paper";
+import TextField from "@material-ui/core/TextField/TextField";
+import withStyles from "@material-ui/core/styles/withStyles";
 
-interface Props {
+interface Props extends StyledComponentProps{
   viewStore: ViewStore;
 }
 
+interface State {
+  type: string;
+}
+
+const style = (themee: Theme) => createStyles({
+  paper: {
+    margin: themee.spacing.unit * 5
+  },
+  input: {
+    color: themee.palette.text.primary,
+    padding: '10px 12px',
+  },
+  placeholder: {
+    color: themee.palette.text.primary,
+  }
+});
+
 @inject("viewStore")
 @observer
-export class BrowseJobs extends React.Component<Props> {
+class BrowseJobsBase extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
+
+    this.state = {type:""};
   }
 
   getJobs() {
@@ -25,14 +47,41 @@ export class BrowseJobs extends React.Component<Props> {
     ];
   }
 
+  handleSubmit = (event)=>{
+    event.preventDefault();
+    console.log(this.state.type);
+    const data = {
+      username: this.state.type,
+    };
+    // handle based on data (update table)
+  };
+
+  handleInputChange = (event)=>{
+    event.preventDefault();
+    this.setState({type: event.target.value});
+  };
 
   render(): React.ReactNode {
+    const {classes} = this.props;
+
     return (
       <MuiThemeProvider theme = {theme}>
-        <React.Fragment>
-          <RecommendedJobsTable jobs={this.getJobs()}/>
-        </React.Fragment>
+          <Paper className={classes.paper}>
+            <form onSubmit={this.handleSubmit}>
+              <TextField
+                label="Type"
+                className={classes.bootstrapInput}
+                InputLabelProps = {{style: {color: '#c7d2e2'}}}
+                value={this.state.type}
+                onChange={this.handleInputChange}
+                margin="normal"
+              />
+            </form>
+            <RecommendedJobsTable jobs={this.getJobs()}/>
+          </Paper>
       </MuiThemeProvider>
     );
   }
 }
+
+export const BrowseJobs = withStyles(style)(BrowseJobsBase);
