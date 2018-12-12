@@ -10,6 +10,7 @@ import TextField from "@material-ui/core/TextField/TextField";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Button from "@material-ui/core/Button";
 import {FetchUtils} from "../../../utils/FetchUtils";
+import {BrowseJobsList} from "./BrowseJobsList";
 
 interface Props extends StyledComponentProps{
   viewStore: ViewStore;
@@ -102,7 +103,7 @@ class BrowseJobsBase extends React.Component<Props, State> {
                 </Button>
               </form>
             </div>
-            <RecommendedJobsTable jobs={this.state.jobs}/>
+            <BrowseJobsList jobs={this.state.jobs}/>
           </Paper>
       </MuiThemeProvider>
     );
