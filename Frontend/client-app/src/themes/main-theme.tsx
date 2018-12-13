@@ -4,20 +4,20 @@ import {grey, indigo, red, green, deepPurple, blue, blueGrey} from "@material-ui
 export const theme = createMuiTheme({ // material ui color palette: https://material-ui.com/style/color/#color-palette
   palette: {
     background: {
-      default: grey[900],
-      paper: grey[800],
+      default: "#9E99A6",
+      paper: "#4C3B4D",
     },
     primary: {
-      main: "#374969"
+      main: "#963358"
     },
     secondary: {
-      main: indigo[500]
+      main: "#FFEEDB"
     },
     text: {
-      primary: grey[100]
+      primary: grey[900]
     },
     error: {
-      main: red.A700
+      main: "#61C9A8"
     },
     action: {
       active: deepPurple[100],

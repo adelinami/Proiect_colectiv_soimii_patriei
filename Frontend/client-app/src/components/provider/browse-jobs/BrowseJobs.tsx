@@ -24,6 +24,7 @@ interface State {
 const style = (themee: Theme) => createStyles({
   paper: {
     margin: themee.spacing.unit * 5,
+    backgroundColor: themee.palette.background.default
   },
   searchContainer: {
     marginLeft: '10px',
@@ -66,9 +67,9 @@ class BrowseJobsBase extends React.Component<Props, State> {
     });
 
     this.setState({jobs: [
-        new Job("1", "cleaning", "clean my house", "bob321", "dinner", "20-09-2018"),
-        new Job("2", "dog walk", "walk good boie", "angry_cat98", "5", "23-09-2018"),
-        new Job("3", "kid", "take care of my toddler!!", "xfg45", "12", "30-09-2018"),
+        new Job("1", "cleaning", "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Excepteur sint occaecat cupidatat non proident, sunt", "bob321", "dinner", "20-09-2018"),
+        new Job("2", "dog walk", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", "angry_cat98", "5", "23-09-2018"),
+        new Job("3", "kid", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", "xfg45", "12", "30-09-2018"),
       ]});
   }
 
